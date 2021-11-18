@@ -58,7 +58,7 @@
          "required": false,
          "value": "Stable"
       },
-      "SW_API": {
+      "CUSTOM_CMDS": {
          "description": "Something like '/' to execute commands.",
          "required": true,
          "value": "/ !"
@@ -97,6 +97,10 @@
          "required": true,
          "value": "ANYTHING"
       }
+      "SW_API": {
+         "Description": "spamwatch api from @Spamwatchbot"
+         "required": false,
+         "value": ""
    },
    "buildpacks": [
     {
