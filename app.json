@@ -101,7 +101,7 @@
          "Description": "spamwatch api from @Spamwatchbot"
          "required": false,
          "value": ""
-   },
+      },
    "buildpacks": [
     {
       "url": "heroku/python"
