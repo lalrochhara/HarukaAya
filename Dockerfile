@@ -6,4 +6,4 @@ COPY ./config.yml /data/HarukaAya
 
 WORKDIR /data/HarukaAya
 
-CMD ["python", "-m", "haruka"]
+CMD ["python", "-m", "HarukaAya"]
