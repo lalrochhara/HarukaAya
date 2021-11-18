@@ -1,9 +1,31 @@
-FROM registry.gitlab.com/harukanetwork/oss/harukaaya:dockerstation
+FROM python:3.10.0-slim-bullseye
 
-RUN git clone https://gitlab.com/HarukaNetwork/OSS/HarukaAya.git -b staging /data/HarukaAya
+# Don't use cached python packages
+ENV PIP_NO_CACHE_DIR 1
 
-COPY ./config.yml /data/HarukaAya
+# Installing Required Packages
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install --no-install-recommends -y \
+    bash \
+    python3-dev \
+    python3-lxml \
+    gcc \
+    git \
+    make \
+    && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
 
-WORKDIR /data/HarukaAya
+# Enter Workplace
+WORKDIR /app
 
-CMD ["python3", "-m", "HarukaAya"]
+# Copy folder
+COPY . .
+
+# Install dependencies
+RUN pip3 install --upgrade pip
+
+# Install Bot Deps and stuff
+RUN make install
+
+# Run the bot
+ENTRYPOINT ["python3", -m "HarukaAya"]
